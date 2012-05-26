@@ -64,6 +64,10 @@ class Client {
   private $authenticated = false;
 
   public function __construct($config = array()) {
+
+    // TODO: check wny sf20 does not included this file
+    include_once __DIR__.'/config.php';
+
     global $apiConfig;
     $apiConfig = array_merge($apiConfig, $config);
     self::$cache = new $apiConfig['cacheClass']();
@@ -217,7 +221,7 @@ class Client {
     $apiConfig['oauth2_client_id'] = $clientId;
     self::$auth->clientId = $clientId;
   }
-  
+
   /**
    * Set the OAuth 2.0 Client Secret.
    * @param string $clientSecret

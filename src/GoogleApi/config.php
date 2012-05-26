@@ -20,7 +20,7 @@ $apiConfig = array(
     // True if objects should be returned by the service classes.
     // False if associative arrays should be returned (default behavior).
     'use_objects' => false,
-  
+
     // The application_name is included in the User-Agent HTTP header.
     'application_name' => '',
 
@@ -37,14 +37,14 @@ $apiConfig = array(
     // See http://code.google.com/apis/accounts/docs/RegistrationForWebAppsAuto.html for info on how to obtain those
     'oauth_consumer_key'    => 'anonymous',
     'oauth_consumer_secret' => 'anonymous',
-  
+
     // Site name to show in the Google's OAuth 1 authentication screen.
     'site_name' => 'www.example.org',
 
     // Which Authentication, Storage and HTTP IO classes to use.
-    'authClass'    => 'apiOAuth2',
-    'ioClass'      => 'apiCurlIO',
-    'cacheClass'   => 'apiFileCache',
+    'authClass'    => 'GoogleApi\Auth\OAuth2',
+    'ioClass'      => 'GoogleApi\Io\CurlIO',
+    'cacheClass'   => 'GoogleApi\Cache\FileCache',
 
     // If you want to run the test suite (by running # phpunit AllTests.php in the tests/ directory), fill in the settings below
     'oauth_test_token' => '', // the oauth access token to use (which you can get by runing authenticate() as the test user and copying the token value), ie '{"key":"foo","secret":"bar","callback_url":null}'

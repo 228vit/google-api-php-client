@@ -17,6 +17,7 @@
 namespace GoogleApi\Io;
 
 use GoogleApi\Client;
+use GoogleApi\External;
 use GoogleApi\Service;
 
 /**
@@ -44,7 +45,7 @@ class REST {
     return $ret;
   }
 
-  
+
   /**
    * Decode an HTTP Response.
    * @static
@@ -56,7 +57,7 @@ class REST {
     $code = $response->getResponseHttpCode();
     $body = $response->getResponseBody();
     $decoded = null;
-    
+
     if ($code != '200' && $code != '201' && $code != '204') {
       $decoded = json_decode($body, true);
       $err = 'Error calling ' . $response->getRequestMethod() . ' ' . $response->getUrl();
@@ -69,7 +70,7 @@ class REST {
       }
       throw new Service\Exception($err, $code);
     }
-    
+
     // Only attempt to decode the response, if the response code wasn't (204) 'no content'
     if ($code != '204') {
       $decoded = json_decode($body, true);
@@ -116,7 +117,8 @@ class REST {
     }
 
     if (count($uriTemplateVars)) {
-      $uriTemplateParser = new URI_Template_Parser($requestUrl);
+//      $uriTemplateParser = new GoogleApi\Io\URI_Template_Parser($requestUrl);
+      $uriTemplateParser = new External\URITemplateParser($requestUrl);
       $requestUrl = $uriTemplateParser->expand($uriTemplateVars);
     }
     //FIXME work around for the the uri template lib which url encodes
